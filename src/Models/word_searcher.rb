@@ -21,22 +21,6 @@ class WordSearcher
   end
 
   #
-  # Find the @words_dict words in the @letters_grid and initialize
-  # the @found_words attribute.
-  #
-  # @return nil
-  def find_words
-    research_strings = []
-    research_strings += left_to_right_strings
-    research_strings += right_to_left_strings
-    research_strings += top_to_bottom_strings
-    research_strings += bottom_to_top_strings
-    research_strings += diagonal_left_to_right_strings
-    research_strings += diagonal_right_to_left_strings
-    check_words_dict(research_strings)
-  end
-
-  #
   # Horizontal left to right strings in @letters_grid
   #
   # @return [2D Array]: The found words.
@@ -72,8 +56,8 @@ class WordSearcher
     research_strings = []
     for i in 0..(@letters_grid.size - 1)
       column_string = *(0..(@letters_grid.size - 1)).
-        map { |j| @letters_grid[j][i]}.join()
-      research_strings.push(column_string)
+        map { |j| @letters_grid[j][i] }.join()
+      research_strings.push(column_string[0])
     end
     research_strings.uniq!
     research_strings
@@ -88,7 +72,7 @@ class WordSearcher
     for i in 0..(@letters_grid.size - 1)
       column_string = *(0..(@letters_grid.size - 1)).
         map { |j| @letters_grid[j][i]}.reverse.join()
-      research_strings.push(column_string)
+      research_strings.push(column_string[0])
     end
     research_strings.uniq!
     research_strings
@@ -147,6 +131,29 @@ class WordSearcher
     research_strings
   end
 
+  private
+
+  #
+  # Find all (horizontal, vertical, diagonal) words in the @letters_grid
+  # and check with the dictionary,.
+  #
+  # @return nil
+  def find_words
+    research_strings = []
+    research_strings += left_to_right_strings
+    research_strings += right_to_left_strings
+    research_strings += top_to_bottom_strings
+    research_strings += bottom_to_top_strings
+    research_strings += diagonal_left_to_right_strings
+    research_strings += diagonal_right_to_left_strings
+    check_words_dict(research_strings)
+  end
+
+  #
+  # Check the found words from #find_words with the dictionary.
+  # @param research_strings [Array]: All found words from @letters_grid
+  #
+  # @return nil
   def check_words_dict(research_strings)
     @words_dict.each do |dict_word|
       research_strings.each do |research_string|
