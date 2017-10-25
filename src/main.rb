@@ -1,10 +1,8 @@
-# Load the path of the project
-$LOAD_PATH.unshift(File.dirname(__FILE__))
-require 'Models/grid'
-require 'Models/word_searcher'
+require_relative 'Models/grid'
+require_relative 'Models/word_searcher'
 
 words_dict = []
-file = 'dict.txt'
+file = "#{File.dirname(__FILE__)}/../dict.txt"
 
 # Read the given dict.txt file.
 File.readlines(file).each do |line|
