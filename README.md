@@ -1,5 +1,5 @@
 # Cross Words Finder
-A simple project made to find words from a dict in a random ganerated matrix of characters. To run it you need ruby 2.2+.
+A simple project made to find words (up-down, down-up, left-right, right-left, diagonal, anti-diagonal) from a dict in a random ganerated matrix of characters. To run it you need ruby 2.2+.
 To run it:
 ```console
 $ git clone https://github.com/diegommarino/cross_words.git
